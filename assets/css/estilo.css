@@ -25,6 +25,7 @@ label {
     font-weight: bold;
 }
 ul {
+    position: relative; left: 350px; bottom: 600px;
     margin: 20px 0 0 0;
     padding: 0px;
     list-style: none;

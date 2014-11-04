@@ -17,6 +17,10 @@
 	<label for="email">Email:</label><br/>
 	<input type="text" name="email" value="<?php echo $dados_user[0]->email; ?>"/>
 	<div class="error"><?php echo form_error('email'); ?></div>
+        
+          <label for="senha">Senha:</label><br/>
+    <input type="text" name="senha" value="<?php echo $dados_user[0]->senha; ?>"/>
+    <div class="error"><?php echo form_error('senha'); ?></div>
  
 	<input type="submit" name="atualizar" value="Atualizar" />
  

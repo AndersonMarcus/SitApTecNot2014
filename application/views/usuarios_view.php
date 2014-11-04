@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>assets/css/estilo.css"/>
+    <link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/css/estilo.css'); ?>"/>
     <title><?php echo $titulo; ?></title>
     <meta charset="UTF-8" />
     
@@ -67,10 +67,10 @@
     
     <!-- Lista os Usuarios Cadastradas -->
 <div id="grid-usuarios">
-    <ul>
+    <ul id="grid">
 	<?php foreach($usuarios as $user): ?>
 	<li>
-	    <a title="Deletar" href="<?php echo base_url() . 'usuarios/deletar/' . $user->idusuario; ?>" onclick="return confirm('Confirma a exclusão deste registro?')"><img src="<?php echo base_url(); ?>/assets/img/lixo.png" /></a>
+	    <a title="Deletar" href="<?php echo base_url() . 'usuarios/deletar/' . $user->idusuario; ?>" onclick="return confirm('Confirma a exclusão deste registro?')"><img src="<?php echo base_url('assets/img/lixo.png'); ?>/></a>
 	    <span> - </span>
 	    <a title="Editar" href="<?php echo base_url() . 'usuarios/editar/' . $user->idusuario; ?>"><?php echo $user->nome; ?></a>
 	    <span> - </span>

@@ -1,107 +1,205 @@
-<!DOCTYPE html>
+<?php
 
-<html>
-    <head>
-        <title>Web site Didático - Responsivo e Adaptável</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
-        <link href="css/estilo.css" rel="stylesheet" type="text/css"/>
-        <link href="css/estilo.css" rel="stylesheet" type="text/css" media="screen"/>
-        <link href="css/print.css" rel="stylesheet" type="text/css" media="print"/>
-    </head>
-    <body>
-        <header>
-        <h1>Web site Didático - Responsivo e Adaptável</h1>
-        <h2 class="nImprimir">Detecão de medidas</h2>
-        <p class="paisagem nImprimir">Horizontal - Paisagem</p>
-        <p class="retrato nImprimir">Vertical - Retrato</p>
-        <p class="nImprimir">Tela Largura : <span id="largura"></span>
-            Altura : <span id="altura"></span></p>
-        
-        <script src="js/medidas.js"></script>
-        </header>
-        <section>
-            <h1>Eleições 2014</h1>
-            
-            <h2>Fotos da Situação</h2>
-            
-            <figure>
-                <img src="http://felipealvesestudio.files.wordpress.com/2012/11/caricatura_dilma_rouseff_colorida.jpg" alt="Caricatura Dilma 1"  title="Caricatura Dilma" />
-                <figcaption><a href="http://felipealvesestudio.files.wordpress.com/2012/11/caricatura_dilma_rouseff_colorida.jpg">Dilma</a></figcaption>
-            </figure>
-            <figure>
-                <img src="http://perlbal.hi-pi.com/blog-images/870510/gd/131621519527/Dilma-Rousseff.jpg" alt="Caricatura Dilma 2"  title="Caricatura Dilma" />
-                <figcaption><a href="http://perlbal.hi-pi.com/blog-images/870510/gd/131621519527/Dilma-Rousseff.jpg">Dilma</a></figcaption>
-            </figure>
-            <figure>
-                <img src="http://renanlimastudio.files.wordpress.com/2011/06/dilmacarica.jpg" alt="Caricatura Dilma 3"  title="Caricatura Dilma" />
-                <figcaption><a href="http://renanlimastudio.files.wordpress.com/2011/06/dilmacarica.jpg">Dilma</a></figcaption>
-            </figure>
-            <figure>
-                <img src="http://4.bp.blogspot.com/-P3jUXQXA5hk/TXRUPDNV3vI/AAAAAAAAG4I/YQBsk7e4T1Q/s1600/dilma%2Bcaricatura%2B%25289%2529.jpg" alt="Caricatura Dilma 4"  title="Caricatura Dilma" />
-                <figcaption><a href="http://4.bp.blogspot.com/-P3jUXQXA5hk/TXRUPDNV3vI/AAAAAAAAG4I/YQBsk7e4T1Q/s1600/dilma%2Bcaricatura%2B%25289%2529.jpg">Dilma</a></figcaption>
-            </figure>
-            <figure>
-                <img src="http://1.bp.blogspot.com/_ZVksPP4Ue84/SwXFiiODygI/AAAAAAAABHk/nqoe0aLCG9A/s1600/dilma.jpg" alt="Caricatura Dilma 5"  title="Caricatura Dilma" />
-                <figcaption><a href="http://1.bp.blogspot.com/_ZVksPP4Ue84/SwXFiiODygI/AAAAAAAABHk/nqoe0aLCG9A/s1600/dilma.jpg">Dilma</a></figcaption>
-            </figure>
-            <figure>
-                <img src="https://c2.staticflickr.com/6/5023/5603404953_3f020791cb.jpg" alt="Caricatura Dilma 6"  title="Caricatura Dilma" />
-                <figcaption><a href="https://c2.staticflickr.com/6/5023/5603404953_3f020791cb.jpg">Dilma</a></figcaption>
-            </figure>
-            <figure>
-                <img src="http://1.bp.blogspot.com/_MTpCB7I2vXw/TUwU4-yVIuI/AAAAAAAAAUw/zYJegd-Ij1Q/s1600/Dilma+Roussef+por+Romero+Britto.jpg" alt="Caricatura Dilma 7"  title="Caricatura Dilma" />
-                <figcaption><a href="http://1.bp.blogspot.com/_MTpCB7I2vXw/TUwU4-yVIuI/AAAAAAAAAUw/zYJegd-Ij1Q/s1600/Dilma+Roussef+por+Romero+Britto.jpg">Dilma</a></figcaption>
-            </figure>
-            <figure>
-                <img src="http://lh4.ggpht.com/_EcaUbEVHibI/TTQbZ-r0vGI/AAAAAAAABLM/WWcq1MxbjHw/dilmaMenor_thumb%5B2%5D.jpg?imgmax=800" alt="Caricatura Dilma 8"  title="Caricatura Dilma" />
-                <figcaption><a href="http://lh4.ggpht.com/_EcaUbEVHibI/TTQbZ-r0vGI/AAAAAAAABLM/WWcq1MxbjHw/dilmaMenor_thumb%5B2%5D.jpg?imgmax=800">Dilma</a></figcaption>
-            </figure>
-            <figure>
-                <img src="http://3.bp.blogspot.com/-9CRjOuVGXZE/TjF2XRF_8zI/AAAAAAAAATU/jYQhBkgizq8/s640/dilma_caricatura.jpg" alt="Caricatura Dilma 9"  title="Caricatura Dilma" />
-                <figcaption><a href="http://3.bp.blogspot.com/-9CRjOuVGXZE/TjF2XRF_8zI/AAAAAAAAATU/jYQhBkgizq8/s640/dilma_caricatura.jpg">Dilma</a></figcaption>
-            </figure>
-            
-            
-            <h2 class="fim">Fotos da Oposição</h2>
-            
-             <figure>
-                <img src="http://1.bp.blogspot.com/-5DsxH29p-GQ/Uis_CfGigeI/AAAAAAABSbY/H28-pF1n8lw/s640/aecio+bafometro3.jpg" alt="Aecio 1"  title="" />
-                <figcaption><a href="http://1.bp.blogspot.com/-5DsxH29p-GQ/Uis_CfGigeI/AAAAAAABSbY/H28-pF1n8lw/s640/aecio+bafometro3.jpg">Aécio</a></figcaption>
-            </figure>
-             <figure>
-                <img src="https://tebloga.files.wordpress.com/2010/12/veja_20_10_2010_aecio.jpg" alt="Aecio 2"  title="Aécio Neves" />
-                <figcaption><a href="https://tebloga.files.wordpress.com/2010/12/veja_20_10_2010_aecio.jpg">Aécio</a></figcaption>
-            </figure>
-             <figure>
-                <img src="http://jornalggn.com.br/sites/default/files/u16/aecio-neves-com-arma.jpg" alt="Aecio 3"  title="Aécio Neves" />
-                <figcaption><a href="http://jornalggn.com.br/sites/default/files/u16/aecio-neves-com-arma.jpg">Aécio</a></figcaption>
-            </figure>
-             <figure>
-                <img src="http://blogdopaulinho.files.wordpress.com/2014/01/ac3a9cio-cheirado.jpg" alt="Aecio 4"  title="Aécio Neves" />
-                <figcaption><a href="http://blogdopaulinho.files.wordpress.com/2014/01/ac3a9cio-cheirado.jpg">Aécio</a></figcaption>
-            </figure>
-             <figure>
-                <img src="http://baptistao.zip.net/images/ronaldoaecio1.jpg" alt="Aecio 5"  title="Aécio Neves" />
-                <figcaption><a href="http://baptistao.zip.net/images/ronaldoaecio1.jpg">Aécio</a></figcaption>
-            </figure>
-             <figure>
-                <img src="http://4.bp.blogspot.com/-tOGiHrTzlkI/TvJVd_Kin0I/AAAAAAAAA3I/Zn94gJIq8YE/s640/A%25C3%2589CIO+-+INCONFIDENTE+-+Face.jpg" alt="Aecio 6"  title="Aécio Neves" />
-                <figcaption><a href="http://4.bp.blogspot.com/-tOGiHrTzlkI/TvJVd_Kin0I/AAAAAAAAA3I/Zn94gJIq8YE/s640/A%25C3%2589CIO+-+INCONFIDENTE+-+Face.jpg">Aécio</a></figcaption>
-            </figure>
-             <figure>
-                <img src="http://1.bp.blogspot.com/-_WHex-EjMGc/U0ldMoeEWEI/AAAAAAAAAQM/50SF0mWaGV8/s1600/A%C3%A9cio+Neves.png" alt="Aecio 7"  title="Aécio Neves" />
-                <figcaption><a href="http://1.bp.blogspot.com/-_WHex-EjMGc/U0ldMoeEWEI/AAAAAAAAAQM/50SF0mWaGV8/s1600/A%C3%A9cio+Neves.png">Aécio</a></figcaption>
-            </figure>
-             <figure>
-                <img src="http://www.diariodocentrodomundo.com.br/wp-content/uploads/2013/03/A%C3%A9cio-Neves1.jpg" alt="Aecio 8"  title="Aécio Neves" />
-                <figcaption><a href="http://www.diariodocentrodomundo.com.br/wp-content/uploads/2013/03/A%C3%A9cio-Neves1.jpg">Aécio</a></figcaption>
-            </figure>
-             <figure>
-                <img src="http://www.jpsdbmg.com/wp-content/uploads/2011/10/aecio1-481x245.jpg" alt="Aecio 9"  title="Aécio Neves" />
-                <figcaption><a href="http://www.jpsdbmg.com/wp-content/uploads/2011/10/aecio1-481x245.jpg">Aécio</a></figcaption>
-            </figure>
-            <br class="fim"/>
-        </section>
-    </body>
-</html>
+/*
+ *---------------------------------------------------------------
+ * APPLICATION ENVIRONMENT
+ *---------------------------------------------------------------
+ *
+ * You can load different configurations depending on your
+ * current environment. Setting the environment also influences
+ * things like logging and error reporting.
+ *
+ * This can be set to anything, but default usage is:
+ *
+ *     development
+ *     testing
+ *     production
+ *
+ * NOTE: If you change these, also change the error_reporting() code below
+ *
+ */
+	define('ENVIRONMENT', 'development');
+/*
+ *---------------------------------------------------------------
+ * ERROR REPORTING
+ *---------------------------------------------------------------
+ *
+ * Different environments will require different levels of error reporting.
+ * By default development will show errors but testing and live will hide them.
+ */
+
+if (defined('ENVIRONMENT'))
+{
+	switch (ENVIRONMENT)
+	{
+		case 'development':
+			error_reporting(E_ALL);
+		break;
+	
+		case 'testing':
+		case 'production':
+			error_reporting(0);
+		break;
+
+		default:
+			exit('The application environment is not set correctly.');
+	}
+}
+
+/*
+ *---------------------------------------------------------------
+ * SYSTEM FOLDER NAME
+ *---------------------------------------------------------------
+ *
+ * This variable must contain the name of your "system" folder.
+ * Include the path if the folder is not in the same  directory
+ * as this file.
+ *
+ */
+	$system_path = 'system';
+
+/*
+ *---------------------------------------------------------------
+ * APPLICATION FOLDER NAME
+ *---------------------------------------------------------------
+ *
+ * If you want this front controller to use a different "application"
+ * folder then the default one you can set its name here. The folder
+ * can also be renamed or relocated anywhere on your server.  If
+ * you do, use a full server path. For more info please see the user guide:
+ * http://codeigniter.com/user_guide/general/managing_apps.html
+ *
+ * NO TRAILING SLASH!
+ *
+ */
+	$application_folder = 'application';
+
+/*
+ * --------------------------------------------------------------------
+ * DEFAULT CONTROLLER
+ * --------------------------------------------------------------------
+ *
+ * Normally you will set your default controller in the routes.php file.
+ * You can, however, force a custom routing by hard-coding a
+ * specific controller class/function here.  For most applications, you
+ * WILL NOT set your routing here, but it's an option for those
+ * special instances where you might want to override the standard
+ * routing in a specific front controller that shares a common CI installation.
+ *
+ * IMPORTANT:  If you set the routing here, NO OTHER controller will be
+ * callable. In essence, this preference limits your application to ONE
+ * specific controller.  Leave the function name blank if you need
+ * to call functions dynamically via the URI.
+ *
+ * Un-comment the $routing array below to use this feature
+ *
+ */
+	// The directory name, relative to the "controllers" folder.  Leave blank
+	// if your controller is not in a sub-folder within the "controllers" folder
+	// $routing['directory'] = '';
+
+	// The controller class file name.  Example:  Mycontroller
+	// $routing['controller'] = '';
+
+	// The controller function you wish to be called.
+	// $routing['function']	= '';
+
+
+/*
+ * -------------------------------------------------------------------
+ *  CUSTOM CONFIG VALUES
+ * -------------------------------------------------------------------
+ *
+ * The $assign_to_config array below will be passed dynamically to the
+ * config class when initialized. This allows you to set custom config
+ * items or override any default config values found in the config.php file.
+ * This can be handy as it permits you to share one application between
+ * multiple front controller files, with each file containing different
+ * config values.
+ *
+ * Un-comment the $assign_to_config array below to use this feature
+ *
+ */
+	// $assign_to_config['name_of_config_item'] = 'value of config item';
+
+
+
+// --------------------------------------------------------------------
+// END OF USER CONFIGURABLE SETTINGS.  DO NOT EDIT BELOW THIS LINE
+// --------------------------------------------------------------------
+
+/*
+ * ---------------------------------------------------------------
+ *  Resolve the system path for increased reliability
+ * ---------------------------------------------------------------
+ */
+
+	// Set the current directory correctly for CLI requests
+	if (defined('STDIN'))
+	{
+		chdir(dirname(__FILE__));
+	}
+
+	if (realpath($system_path) !== FALSE)
+	{
+		$system_path = realpath($system_path).'/';
+	}
+
+	// ensure there's a trailing slash
+	$system_path = rtrim($system_path, '/').'/';
+
+	// Is the system path correct?
+	if ( ! is_dir($system_path))
+	{
+		exit("Your system folder path does not appear to be set correctly. Please open the following file and correct this: ".pathinfo(__FILE__, PATHINFO_BASENAME));
+	}
+
+/*
+ * -------------------------------------------------------------------
+ *  Now that we know the path, set the main path constants
+ * -------------------------------------------------------------------
+ */
+	// The name of THIS file
+	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
+
+	// The PHP file extension
+	// this global constant is deprecated.
+	define('EXT', '.php');
+
+	// Path to the system folder
+	define('BASEPATH', str_replace("\\", "/", $system_path));
+
+	// Path to the front controller (this file)
+	define('FCPATH', str_replace(SELF, '', __FILE__));
+
+	// Name of the "system folder"
+	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
+
+
+	// The path to the "application" folder
+	if (is_dir($application_folder))
+	{
+		define('APPPATH', $application_folder.'/');
+	}
+	else
+	{
+		if ( ! is_dir(BASEPATH.$application_folder.'/'))
+		{
+			exit("Your application folder path does not appear to be set correctly. Please open the following file and correct this: ".SELF);
+		}
+
+		define('APPPATH', BASEPATH.$application_folder.'/');
+	}
+
+/*
+ * --------------------------------------------------------------------
+ * LOAD THE BOOTSTRAP FILE
+ * --------------------------------------------------------------------
+ *
+ * And away we go...
+ *
+ */
+require_once BASEPATH.'core/CodeIgniter.php';
+
+/* End of file index.php */
+/* Location: ./index.php */

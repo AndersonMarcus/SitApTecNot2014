@@ -14,6 +14,8 @@ class Usuarios extends CI_Controller {
 
     function index() {
         $data['titulo'] = "CRUD com CodeIgniter | Cadastro de Usuario";
+
+        /* Lista todos os registros da tabela pessoas */
         $data['usuarios'] = $this->usuarios_model->listar();
         $this->load->view('usuarios_view.php', $data);
     }
@@ -29,6 +31,8 @@ class Usuarios extends CI_Controller {
         /* Define as regras para validação */
         $this->form_validation->set_rules('nome', 'Nome', 'required|max_length[40]');
         $this->form_validation->set_rules('email', 'E-mail', 'trim|required|valid_email|max_length[100]');
+        $this->form_validation->set_rules('senha', 'Senha', 'required|max_length[10]');
+         $this->form_validation->set_rules('dtnascimento', 'Data Nascimento', 'required|max_length[8]');
 
         /* Executa a validação e caso houver erro... */
         if ($this->form_validation->run() === FALSE) {
@@ -48,10 +52,10 @@ class Usuarios extends CI_Controller {
             $data['endereco'] = $this->input->post('endereco');
             $data['cep'] = $this->input->post('cep');
             $data['telefone'] = $this->input->post('telefone');
-             $data['celular'] = $this->input->post('celular');
+            $data['celular'] = $this->input->post('celular');
             $data['dtCriacao'] = $this->input->post('dtCriacao');
             $data['dtAtualizacao'] = $this->input->post('dtAtualizacao');
-            
+
             /* Chama a função inserir do modelo */
             if ($this->usuarios_model->inserir($data)) {
                 redirect('usuarios');
@@ -94,9 +98,15 @@ class Usuarios extends CI_Controller {
             ),
             array(
                 'field' => 'email',
-                'label' => 'email',
+                'label' => 'Email',
                 'rules' => 'trim|required|valid_email|max_length[100]'
-            )
+            ),
+            array(
+                'field' => 'senha',
+                'label' => 'Senha',
+                'rules' => 'trim|required|max_length[10]'
+            ),
+            
         );
         $this->form_validation->set_rules($validations);
 
@@ -109,9 +119,9 @@ class Usuarios extends CI_Controller {
             $data['idusuario'] = $this->input->post('idusuario');
             $data['nome'] = ucwords($this->input->post('nome'));
             $data['email'] = strtolower($this->input->post('email'));
-
-            /* Carrega o modelo */
-            $this->load->model('usuarios_model');
+            $data['senha'] = strtolower($this->input->post('senha'));
+            $data['dtnascimento'] = strtolower($this->input->post('dtnascimento'));
+       
 
             /* Executa a função atualizar do modelo passando como parâmetro os dados obtidos do formulário */
             if ($this->usuarios_model->atualizar($data)) {
@@ -126,9 +136,7 @@ class Usuarios extends CI_Controller {
 
     function deletar($idusuario) {
 
-        /* Carrega o modelo */
-        $this->load->model('usuarios_model');
-
+       
         /* Executa a função deletar do modelo passando como parâmetro o idusuario da pessoa */
         if ($this->usuarios_model->deletar($idusuario)) {
             /* Caso sucesso ao atualizar, recarrega a página principal */
