@@ -70,7 +70,7 @@
     <ul id="grid">
 	<?php foreach($usuarios as $user): ?>
 	<li>
-	    <a title="Deletar" href="<?php echo base_url() . 'usuarios/deletar/' . $user->idusuario; ?>" onclick="return confirm('Confirma a exclusão deste registro?')"><img src="<?php echo base_url('assets/img/lixo.png'); ?>/></a>
+	    <a title="Deletar" href="<?php echo base_url() . 'usuarios/deletar/' . $user->idusuario; ?>" onclick="return confirm('Confirma a exclusão deste registro?')"><img src="<?php echo base_url('assets/img/lixo.png'); ?>"/></a>
 	    <span> - </span>
 	    <a title="Editar" href="<?php echo base_url() . 'usuarios/editar/' . $user->idusuario; ?>"><?php echo $user->nome; ?></a>
 	    <span> - </span>
