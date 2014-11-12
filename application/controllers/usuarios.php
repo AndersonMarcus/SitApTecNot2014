@@ -6,18 +6,27 @@ if (!defined('BASEPATH'))
 class Usuarios extends CI_Controller {
 
     function __construct() {
-
         parent::__construct();
-        /* Carrega o modelo */
         $this->load->model('usuarios_model');
+        //Definir o timezone - Fuso Horário
+        date_default_timezone_set('America/Sao_Paulo');
     }
 
     function index() {
-        $data['titulo'] = "CRUD com CodeIgniter | Cadastro de Usuario";
-
-        /* Lista todos os registros da tabela pessoas */
+        $data['titulo'] = "CRUD com CodeIgniter | Cadastro de Usuários";
+        /**
+         * Lista todos os registros da tabela pesssoas
+         */
         $data['usuarios'] = $this->usuarios_model->listar();
+        /**
+         * Carrega a view
+         */
         $this->load->view('usuarios_view.php', $data);
+    }
+
+    public function info() {
+        phpinfo();
+        exit();
     }
 
     function inserir() {
@@ -31,8 +40,6 @@ class Usuarios extends CI_Controller {
         /* Define as regras para validação */
         $this->form_validation->set_rules('nome', 'Nome', 'required|max_length[40]');
         $this->form_validation->set_rules('email', 'E-mail', 'trim|required|valid_email|max_length[100]');
-        $this->form_validation->set_rules('senha', 'Senha', 'required|max_length[10]');
-         $this->form_validation->set_rules('dtnascimento', 'Data Nascimento', 'required|max_length[8]');
 
         /* Executa a validação e caso houver erro... */
         if ($this->form_validation->run() === FALSE) {
@@ -44,7 +51,7 @@ class Usuarios extends CI_Controller {
             $data['nome'] = $this->input->post('nome');
             $data['email'] = $this->input->post('email');
             $data['senha'] = $this->input->post('senha');
-            $data['dtNascimento'] = $this->input->post('dtNascimento');
+            $data['dtnascimento'] = $this->input->post('dtnascimento');
             $data['foto'] = $this->input->post('foto');
             $data['cidade'] = $this->input->post('cidade');
             $data['estado'] = $this->input->post('estado');
@@ -53,30 +60,45 @@ class Usuarios extends CI_Controller {
             $data['cep'] = $this->input->post('cep');
             $data['telefone'] = $this->input->post('telefone');
             $data['celular'] = $this->input->post('celular');
-            $data['dtCriacao'] = $this->input->post('dtCriacao');
-            $data['dtAtualizacao'] = $this->input->post('dtAtualizacao');
+
+            //Datas
+            $data['dtcriacao'] = date('Y-m-d H:i:s');
+            $data['dtnascimento'] = $this
+             ->converterDataParaMySql($data['dtnascimento']);
 
             /* Chama a função inserir do modelo */
             if ($this->usuarios_model->inserir($data)) {
                 redirect('usuarios');
             } else {
-                log_message('error', 'Erro ao inserir a pessoa.');
+                log_message('error', 'Erro ao inserir o usuario.');
             }
         }
     }
 
-    function editar($idusuario) {
+    function editar($id) {
 
         /* Aqui vamos definir o título da página de edição */
-        $data['titulo'] = "CRUD com CodeIgniter | Editar Pessoa";
+        $data['titulo'] = "CRUD com CodeIgniter | Editar Usuario";
 
-        /* Carrega o modelo */
-        $this->load->model('usuarios_model');
+        /* Busca os dados da usuario que será editada (id) */
+        $data['dados_usuario'] = $this->usuarios_model->editar($id);
 
-        /* Busca os dados da pessoa que será editada (idusuario) */
-        $data['dados_user'] = $this->usuarios_model->editar($idusuario);
+        //Convertendo a data para o padrão brasileiro
+        $data['dados_usuario'][0]->dtNascimento = 
+        $this->converteDataParaPadraoBrasileiro($data['dados_usuario'][0]->dtNascimento);
 
-        /* Carrega a página de edição com os dados da pessoa */
+        /**
+         * debug is on the table
+         */
+        /*
+          echo "<pre>";
+          var_dump($data);
+          echo "</pre>";
+          die();
+         * 
+         */
+
+        /* Carrega a página de edição com os dados da usuario */
         $this->load->view('usuarios_edit', $data);
     }
 
@@ -98,15 +120,9 @@ class Usuarios extends CI_Controller {
             ),
             array(
                 'field' => 'email',
-                'label' => 'Email',
+                'label' => 'E-mail',
                 'rules' => 'trim|required|valid_email|max_length[100]'
-            ),
-            array(
-                'field' => 'senha',
-                'label' => 'Senha',
-                'rules' => 'trim|required|max_length[10]'
-            ),
-            
+            )
         );
         $this->form_validation->set_rules($validations);
 
@@ -119,9 +135,23 @@ class Usuarios extends CI_Controller {
             $data['idusuario'] = $this->input->post('idusuario');
             $data['nome'] = ucwords($this->input->post('nome'));
             $data['email'] = strtolower($this->input->post('email'));
-            $data['senha'] = strtolower($this->input->post('senha'));
-            $data['dtnascimento'] = strtolower($this->input->post('dtnascimento'));
-       
+            $data['senha'] = $this->input->post('senha');
+            $data['dtnascimento'] = $this->input->post('dtnascimento');
+            $data['foto'] = $this->input->post('foto');
+            $data['cidade'] = $this->input->post('cidade');
+            $data['estado'] = $this->input->post('estado');
+            $data['bairro'] = $this->input->post('bairro');
+            $data['endereco'] = $this->input->post('endereco');
+            $data['cep'] = $this->input->post('cep');
+            $data['telefone'] = $this->input->post('telefone');
+            $data['celular'] = $this->input->post('celular');
+            
+            //Pegando a data de atualização
+            $data['dtatualizacao'] = date('Y-m-d H:i:s');
+            
+            //Convertendo a data para MySQL
+            $data['dtnascimento'] = $this
+             ->converterDataParaMySql($data['dtnascimento']);
 
             /* Executa a função atualizar do modelo passando como parâmetro os dados obtidos do formulário */
             if ($this->usuarios_model->atualizar($data)) {
@@ -129,26 +159,50 @@ class Usuarios extends CI_Controller {
                 redirect('usuarios');
             } else {
                 /* Senão exibe a mensagem de erro */
-                log_message('error', 'Erro ao atualizar a pessoa.');
+                log_message('error', 'Erro ao atualizar o usuario.');
             }
         }
     }
 
     function deletar($idusuario) {
 
-       
-        /* Executa a função deletar do modelo passando como parâmetro o idusuario da pessoa */
+        /* Executa a função deletar do modelo passando como parâmetro o id da usuario */
         if ($this->usuarios_model->deletar($idusuario)) {
             /* Caso sucesso ao atualizar, recarrega a página principal */
             redirect('usuarios');
         } else {
             /* Senão exibe a mensagem de erro */
-            log_message('error', 'Erro ao deletar a pessoa.');
+            log_message('error', 'Erro ao deletar o usuario.');
         }
+    }
+
+    /**
+     * Converte uma data padrão brasileiro DD/MM/AAAA
+     * para o padrão MySQL AAAA-MM-DD 
+     * @param date $databrasileira
+     * @return date
+     */
+    private function converterDataParaMySql($databrasileira) {
+        $data = explode('/', $databrasileira);
+        $data = array_reverse($data);
+        $dataMySQL = implode('-', $data);
+        return $dataMySQL;
+    }
+
+    /**
+     * Converte uma data padrão MySQL AAAA-MM-DD
+     * para o padrão brasileiro DD/MM/AAAA
+     * @param date $dataMySQL
+     * @return date
+     */
+    private function converteDataParaPadraoBrasileiro($dataMySQL) {
+        $data = explode('-', $dataMySQL);
+        $data = array_reverse($data);
+        $dataBrasileira = implode('/', $data);
+        return $dataBrasileira;
     }
 
 }
 
-/* End of file pessoas.php */
-/* Location: ./application/controllers/pessoas.php */
-
+/* End of file usuarios.php */
+/* Location: ./application/controllers/usuarios.php */
