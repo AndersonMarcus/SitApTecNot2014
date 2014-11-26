@@ -62,11 +62,10 @@
                             <h1 style="text-align: center">Benvindo! <?= $this->session->userdata('nome') ?></h1>
                             
                         </div>
-                        
                         <li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Início</span></a></li>
                         <li><a href="#portfolio" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Notícias</span></a></li>
                         <li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contato</span></a></li>
-                        <li><a href="#cadastro" id="cadastro-link" class="skel-layers-ignoreHref" onclick="index()"><span class="icon fa-user">Cadastro</span></a></li>
+                       
                         <li><?= anchor(base_url() . 'login/logout_ci', 'Logout') ?></li>
 
                     </ul>
