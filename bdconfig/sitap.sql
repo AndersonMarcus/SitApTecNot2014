@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2.2
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tempo de Geração: 
--- Versão do Servidor: 5.5.27
--- Versão do PHP: 5.4.7
+-- Máquina: 127.0.0.1
+-- Data de Criação: 25-Nov-2014 às 20:10
+-- Versão do servidor: 5.5.32
+-- versão do PHP: 5.4.16
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,9 +17,9 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Banco de Dados: `sitap`
+-- Base de Dados: `sitap`
 --
-CREATE DATABASE `sitap` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE IF NOT EXISTS `sitap` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `sitap`;
 
 -- --------------------------------------------------------
@@ -158,45 +158,46 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `celular` varchar(45) DEFAULT NULL,
   `dtCriacao` datetime DEFAULT NULL,
   `dtAtualizacao` datetime DEFAULT NULL,
+  `perfil` varchar(45) NOT NULL,
   PRIMARY KEY (`idusuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`idusuario`, `nome`, `email`, `senha`, `dtNascimento`, `foto`, `cidade`, `estado`, `bairro`, `endereco`, `cep`, `telefone`, `celular`, `dtCriacao`, `dtAtualizacao`) VALUES
-(0, 'Anônimo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1, 'admin', 'admin@teste.com.br', '1234', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 'Antônio da Silva Sauro', 'antonio@gmail.com', '1234', '1980-11-06', 'ele.png', 'Brusque', 'SC', 'Centro', 'Rua do Antônio', '88350-540', '(47) 3333-4444', NULL, '2014-11-06 19:29:00', NULL),
-(3, 'Raimunda da Silva Sauro', 'raimunda@gmail.com', '1234', '1990-12-25', 'ela.png', 'Itajaí', 'SC', 'Porto', 'Rua da Raimunda', '88360-987', '(47) 4444-5555', NULL, '2014-11-06 19:30:00', NULL);
+INSERT INTO `usuario` (`idusuario`, `nome`, `email`, `senha`, `dtNascimento`, `foto`, `cidade`, `estado`, `bairro`, `endereco`, `cep`, `telefone`, `celular`, `dtCriacao`, `dtAtualizacao`, `perfil`) VALUES
+(0, 'Anônimo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
+(1, 'admin', 'admin@teste.com.br', '12345', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'administrador'),
+(2, 'mario', 'antonio@gmail.com', '12345', '0000-00-00', 'ele.png', 'Brusque', 'SC', 'Centro', 'Rua do Antônio', '88350-540', '(47) 3333-4444', NULL, '2014-11-06 19:29:00', NULL, 'visualizador'),
+(3, 'Raimunda da Silva Sauro', 'raimunda@gmail.com', '12345', '1990-12-25', 'ela.png', 'Itajaí', 'SC', 'Porto', 'Rua da Raimunda', '88360-987', '(47) 4444-5555', NULL, '2014-11-06 19:30:00', NULL, 'visualizador');
 
 --
--- Restrições para as tabelas dumpadas
+-- Constraints for dumped tables
 --
 
 --
--- Restrições para a tabela `categoria_tem_noticia`
+-- Limitadores para a tabela `categoria_tem_noticia`
 --
 ALTER TABLE `categoria_tem_noticia`
   ADD CONSTRAINT `fk_categoria_has_noticia_categoria1` FOREIGN KEY (`idcategoria`) REFERENCES `categoria` (`idcategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_categoria_has_noticia_noticia1` FOREIGN KEY (`idnoticia`) REFERENCES `noticia` (`idnoticia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Restrições para a tabela `comentario`
+-- Limitadores para a tabela `comentario`
 --
 ALTER TABLE `comentario`
-  ADD CONSTRAINT `fk_usuario_has_noticia_usuario1` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_usuario_has_noticia_noticia1` FOREIGN KEY (`idnoticia`) REFERENCES `noticia` (`idnoticia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_usuario_has_noticia_noticia1` FOREIGN KEY (`idnoticia`) REFERENCES `noticia` (`idnoticia`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_usuario_has_noticia_usuario1` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Restrições para a tabela `foto`
+-- Limitadores para a tabela `foto`
 --
 ALTER TABLE `foto`
   ADD CONSTRAINT `fk_foto_noticia1` FOREIGN KEY (`idnoticia`) REFERENCES `noticia` (`idnoticia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Restrições para a tabela `noticia`
+-- Limitadores para a tabela `noticia`
 --
 ALTER TABLE `noticia`
   ADD CONSTRAINT `fk_noticia_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
