@@ -29,10 +29,11 @@ class Welcome extends CI_Controller {
 
     public function index() {
         /**
-         * Lista todos os registros da tabela pesssoas
+         * Lista todos os registros da tabela usuarios
          */
         $data['usuarios'] = $this->usuarios_model->listar();
-         $this->load->view('home-header');
+        
+        $this->load->view('home-header');
         $this->load->view('home',$data);
         $this->load->view('home-footer');
     }

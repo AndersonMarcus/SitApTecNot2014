@@ -14,19 +14,23 @@ class Usuarios extends CI_Controller {
 
     function index() {
         $data['titulo'] = "CRUD com CodeIgniter | Cadastro de Usuários";
-        /**
-         * Lista todos os registros da tabela pesssoas
-         */
         $data['usuarios'] = $this->usuarios_model->listar();
-        /**
-         * Carrega a view
-         */
-       // $this->load->view('usuarios_view.php', $data);
-          $this->load->view('home-header');
+        
+       if($this->session->userdata('perfil') == FALSE || $this->session->userdata('perfil') != 'administrador'|| $this->session->userdata('perfil') != 'administrador')
+		{
+			redirect(base_url().'login');
+		}
+		$data['titulo'] = 'Benvindo!';
+		$this->load->view('home-header');
         $this->load->view('home',$data);
         $this->load->view('home-footer');
-    }
-
+	}
+       
+   
+  
+        
+        
+      
     public function info() {
         phpinfo();
         exit();
@@ -48,6 +52,7 @@ class Usuarios extends CI_Controller {
         if ($this->form_validation->run() === FALSE) {
             /* Chama a função index do controlador */
             $this->index();
+            //base_url('index.php#cadastro');
             /* Senão, caso sucesso na validação... */
         } else {
             /* Recebe os dados do formulário (visão) */
@@ -102,9 +107,9 @@ class Usuarios extends CI_Controller {
          */
 
         /* Carrega a página de edição com os dados da usuario */
-         $this->load->view('home-header', $data);
-         $this->load->view('home-edit', $data);
-        $this->load->view('home-footer', $data);
+        $this->load->view('home-header');
+        $this->load->view('home-edit', $data);
+        $this->load->view('home-footer');
     }
 
     function atualizar() {
