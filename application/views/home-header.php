@@ -37,9 +37,9 @@
 
                 <!-- Logo -->
                 <div id="logo">
-                    <span class="image avatar48"><img src="<?php echo base_url('assets/images/avatar.jpg'); ?>" alt="" /></span>
-                    <h1 id="title">Jane Doe</h1>
-                    <p>Hyperspace Engineer</p>
+                    <span class="image avatar48"><img src="<?php if (isset($foto)) echo base_url('assets/images/'.$foto); ?>" alt="" /></span>
+                    <h1 id="title">Anderson</h1>
+                    <p>Contextil</p>
                 </div>
 
                 <!-- Nav -->
@@ -59,16 +59,17 @@
                     -->
                     <ul>
                         <div class="grid_12">
-                            <h1 style="text-align: center">Benvindo! <?= $this->session->userdata('nome') ?></h1>
-                            
+                            <h1 style="text-align: center">OLA! <?= $this->session->userdata('nome') ?></h1>
+
                         </div>
-                        
+
                         <li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Início</span></a></li>
                         <li><a href="#portfolio" id="portfolio-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Notícias</span></a></li>
                         <li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contato</span></a></li>
                         <li><a href="#cadastro" id="cadastro-link" class="skel-layers-ignoreHref" onclick="index()"><span class="icon fa-user">Cadastro</span></a></li>
-                        <li><?= anchor(base_url() . 'login/logout_ci', 'Logout') ?></li>
-
+                      <li><a href="login" id="login" class="skel-layers-ignoreHref" onclick="index()"><span class="icon fa-key">Login</span></a></li>
+                        <li><a href="login/logout_ci" id="login" class="skel-layers-ignoreHref" onclick="index()"><span class="icon fa-outdent">Logout</span></a></li>
+                      
                     </ul>
                 </nav>
 
